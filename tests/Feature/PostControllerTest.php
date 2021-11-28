@@ -37,4 +37,18 @@ class PostControllerTest extends TestCase
 
         $response->assertJsonCount(5, 'data');
     }
+
+    /**
+     *
+     * @test
+     */
+    public function it_show_sangle_post()
+    {
+        $post = Post::factory()->published()->create();
+
+        $response = $this->getJson("/api/posts/{$post->uuid}");
+
+        $response->assertOk()
+            ->assertJsonPath('data.title', $post->title);
+    }
 }

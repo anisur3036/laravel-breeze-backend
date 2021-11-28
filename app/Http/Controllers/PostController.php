@@ -16,4 +16,9 @@ class PostController extends Controller
             $posts
         );
     }
+
+    public function show(Post $post)
+    {
+        return new PostResource($post);
+    }
 }
